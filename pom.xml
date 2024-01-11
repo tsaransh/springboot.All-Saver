@@ -40,6 +40,19 @@
 			<artifactId>spring-boot-starter-test</artifactId>
 			<scope>test</scope>
 		</dependency>
+
+<!--		<dependency>-->
+<!--			<groupId>com.github.axet</groupId>-->
+<!--			<artifactId>youtube-dl</artifactId>-->
+<!--			<version>0.5.0</version> &lt;!&ndash; Replace with the latest version &ndash;&gt;-->
+<!--		</dependency>-->
+
+		<!-- Apache HttpClient for making HTTP requests -->
+<!--		<dependency>-->
+<!--			<groupId>org.apache.httpcomponents</groupId>-->
+<!--			<artifactId>httpclient</artifactId>-->
+<!--		</dependency>-->
+
 	</dependencies>
 
 	<build>
