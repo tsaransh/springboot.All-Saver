@@ -18,20 +18,54 @@
 
     <div class="container">
         <div class="box">
-            <form>
-                <input type="text" placeholder="enter your link here...">
+            <form id="downloadForm" method="post">
+                <input type="text" placeholder="enter your link here..." id="downloadUrl">
                 <div class="check-boxes">
-                    <label><input type="radio" name="platformType"> Facebook</label>
-                    <label><input type="radio" name="platformType"> YouTube</label>
-                    <label><input type="radio" name="platformType"> Instagram</label>
+                    <label><input type="radio" name="platformName" value="Facebook"> Facebook</label>
+                    <label><input type="radio" name="platformName" value="YouTube"> YouTube</label>
+                    <label><input type="radio" name="platformName" value="Instagram"> Instagram</label>
                 </div>
                 <div class="select-video-audio">
-                    <label><input type="radio" name="mediaType"> Video</label>
-                    <label><input type="radio" name="mediaType"> Audio</label>
+                    <label><input type="radio" name="downloadType" value="Video"> Video</label>
+                    <label><input type="radio" name="downloadType" value="Audio"> Audio</label>
                 </div>
-                <button class="get-video-btn">Download</button>
+                <button class="get-video-btn" type="button" onclick="submitForm()">Download</button>
             </form>
         </div>
     </div>
+
+    <script>
+        function submitForm() {
+            const downloadUrl = document.getElementById('downloadUrl').value;
+            const platformName = document.querySelector('input[name="platformName"]:checked').value;
+            const downloadType = document.querySelector('input[name="downloadType"]:checked').value;
+
+            const formData = {
+                downloadUrl: downloadUrl,
+                platformName: platformName,
+                downloadType: downloadType
+            };
+
+            // Send an asynchronous POST request
+            fetch('/v1/api/download', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(formData)
+            })
+            .then(response => response.json())
+            .then(data => {
+                // Handle the response as needed
+                console.log(data);
+                // You can redirect or perform other actions based on the response
+                window.location.href = '/success';
+            })
+            .catch(error => {
+                // Handle errors
+                console.error('Error:', error);
+            });
+        }
+    </script>
 </body>
 </html>
